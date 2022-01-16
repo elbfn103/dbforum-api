@@ -23,4 +23,5 @@ public class Post {
     private String content;
     private List<String> comments;
     private String timePosted;
+    private String school;
 }
