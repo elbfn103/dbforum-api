@@ -1,14 +1,13 @@
 package com.driftbapo.controller;
 
 import com.driftbapo.entity.Post;
+import com.driftbapo.links.PostLinks;
 import com.driftbapo.service.PostService;
-import links.PostLinks;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Slf4j
-@RepositoryRestController
+@RestController
 @RequestMapping("/dbforum/")
 @RequiredArgsConstructor
 public class PostController {
@@ -29,14 +28,14 @@ public class PostController {
 
     @GetMapping(path = PostLinks.POSTS)
     public ResponseEntity<?> getPosts() {
-        List<Post> postList = postService.getPosts();
-        return ResponseEntity.ok(postList);
+        List<Post> todoList = postService.getPosts();
+        return ResponseEntity.ok(todoList);
     }
 
     @GetMapping(path = PostLinks.POST)
     public ResponseEntity<?> getPost(@PathVariable("id") String postId) {
         try {
-            LOGGER.info("PostController::: " + postId);
+            LOGGER.info("PostsController::: " + postId);
             Post post = postService.getPost(postId);
 
             return ResponseEntity.ok(post);
@@ -47,11 +46,26 @@ public class PostController {
     }
 
     @PostMapping(path = PostLinks.CREATE_POST)
-    public ResponseEntity<?> createTask(@RequestBody Post post) {
-        LOGGER.info("TasksController: " + post);
+    public ResponseEntity<?> createPost(@RequestBody Post post) {
+        LOGGER.info("PostsController: " + post);
         Post savedPost = postService.savePost(post);
 
         return ResponseEntity.ok(savedPost);
     }
 
+//    @PutMapping(path = PostLinks.UPDATE_POST)
+//    public ResponseEntity<?> updatePost(@RequestBody Post post) {
+//        LOGGER.info("PostsController: " + postDTO);
+//        Post post = postService.updatePost(postDTO);
+//
+//        return ResponseEntity.ok(post);
+//    }
+//
+//    @DeleteMapping(path = PostLinks.DELETE_POST)
+//    public ResponseEntity<?> deletePost(@PathVariable("id") String postId) {
+//        LOGGER.info("PostsController: " + postId);
+//        String result = postService.deletePost(postId);
+//
+//        return ResponseEntity.ok(result);
+//    }
 }

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
 
 @Document(collection = "posts")
@@ -15,6 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Post {
 
+    @Id
+    private String id;
     private String title;
     private String author;
     private String content;

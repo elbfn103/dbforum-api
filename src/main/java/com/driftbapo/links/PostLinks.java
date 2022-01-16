@@ -1,4 +1,4 @@
-package links;
+package com.driftbapo.links;
 
 import org.springframework.stereotype.Component;
 

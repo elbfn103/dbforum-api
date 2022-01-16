@@ -1,4 +1,4 @@
-package com.driftbapo.dbforumapi;
+package com.driftbapo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
