@@ -59,19 +59,19 @@ public class PostController {
         return ResponseEntity.ok().headers(headers).body(savedPost);
     }
 
-//    @PutMapping(path = PostLinks.UPDATE_POST)
-//    public ResponseEntity<?> updatePost(@RequestBody Post post) {
-//        LOGGER.info("PostsController: " + postDTO);
-//        Post post = postService.updatePost(postDTO);
-//
-//        return ResponseEntity.ok(post);
-//    }
-//
-//    @DeleteMapping(path = PostLinks.DELETE_POST)
-//    public ResponseEntity<?> deletePost(@PathVariable("id") String postId) {
-//        LOGGER.info("PostsController: " + postId);
-//        String result = postService.deletePost(postId);
-//
-//        return ResponseEntity.ok(result);
-//    }
+    @PutMapping(path = PostLinks.UPDATE_POST)
+    public ResponseEntity<?> updatePost(@RequestBody Post post) {
+        LOGGER.info("PostsController: " + post);
+        Post savedPost = postService.updatePost(post);
+
+        return ResponseEntity.ok(post);
+    }
+
+    @DeleteMapping(path = PostLinks.DELETE_POST)
+    public ResponseEntity<?> deletePost(@PathVariable("id") String postId) {
+        LOGGER.info("PostsController: " + postId);
+        String result = postService.deletePost(postId);
+
+        return ResponseEntity.ok(result);
+    }
 }

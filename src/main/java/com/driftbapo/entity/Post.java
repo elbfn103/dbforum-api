@@ -22,4 +22,5 @@ public class Post {
     private String author;
     private String content;
     private List<String> comments;
+    private String timePosted;
 }
