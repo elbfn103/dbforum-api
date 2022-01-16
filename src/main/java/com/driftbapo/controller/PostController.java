@@ -2,6 +2,7 @@ package com.driftbapo.controller;
 
 import com.driftbapo.entity.Post;
 import com.driftbapo.service.PostService;
+import links.PostLinks;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @Slf4j
 @RepositoryRestController
-@RequestMapping("/posts")
+@RequestMapping("/dbforum/")
 @RequiredArgsConstructor
 public class PostController {
 
@@ -26,13 +27,13 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping
+    @GetMapping(path = PostLinks.POSTS)
     public ResponseEntity<?> getPosts() {
         List<Post> postList = postService.getPosts();
         return ResponseEntity.ok(postList);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = PostLinks.POST)
     public ResponseEntity<?> getPost(@PathVariable("id") String postId) {
         try {
             LOGGER.info("PostController::: " + postId);
@@ -45,7 +46,7 @@ public class PostController {
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping(path = PostLinks.CREATE_POST)
     public ResponseEntity<?> createTask(@RequestBody Post post) {
         LOGGER.info("TasksController: " + post);
         Post savedPost = postService.savePost(post);
